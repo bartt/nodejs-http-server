@@ -1,10 +1,9 @@
-FROM bartt/ubuntu-base
+FROM alpine:latest
 MAINTAINER Bart Teeuwisse <bart@thecodemill.biz>
 
-# npm expects node, not nodejs
-RUN apt-get install -y nodejs npm && \
-    ln -s /usr/bin/nodejs /usr/bin/node && \
-    npm install http-server -g
+RUN apk update
+RUN apk add nodejs nodejs-npm
+RUN npm install http-server -g
 
 EXPOSE 8080
 USER nobody
